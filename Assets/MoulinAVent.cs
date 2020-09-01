@@ -1,10 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Rewired;
 public class MoulinAVent : MonoBehaviour
 {
     private Player player;
+    public Image fillImage;
+    public float decayStrength = 6.0f;
+    private void Start()
+    {
+        player = ReInput.players.GetPlayer(0);
+    }
     public enum DIRECTION
     {
         UP,
@@ -16,16 +23,11 @@ public class MoulinAVent : MonoBehaviour
 
     public DIRECTION direction = DIRECTION.DEFAULT;
     public float rotationStrength = 0.0f;
-    private void Start()
+    void Update()
     {
-        player = ReInput.players.GetPlayer(0);
-    }
-    void FixedUpdate()
-    {
-        Debug.Log(direction);
+         
         if (rotationStrength < 0)
             rotationStrength = 0;
-
         switch (direction)
         {
             case DIRECTION.UP:
@@ -67,5 +69,15 @@ public class MoulinAVent : MonoBehaviour
                     direction = DIRECTION.RIGHT;
                     break;
         }
+
+        if (rotationStrength > 15.0f)
+            rotationStrength = 15.0f;
+
+        fillImage.fillAmount = rotationStrength / 15.0f;
+    }
+    private void FixedUpdate()
+    {
+        if (rotationStrength > 0)
+            rotationStrength -= decayStrength * Time.deltaTime;
     }
 }
