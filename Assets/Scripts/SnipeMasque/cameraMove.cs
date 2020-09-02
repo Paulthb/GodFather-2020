@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Rewired;
 
 public class cameraMove : MonoBehaviour
 {
@@ -15,6 +14,7 @@ public class cameraMove : MonoBehaviour
 
     private GameObject actualTarget = null;
 
+    private GameObject[] persoNMObjectTab;
     [SerializeField]
     private float cameraSpeed = 2;
 
@@ -28,6 +28,7 @@ public class cameraMove : MonoBehaviour
     {
         player = ReInput.players.GetPlayer(0);
         cameraTransform = GetComponent<Transform>();
+        persoNMObjectTab = GameObject.FindGameObjectsWithTag("NMPerso");
     }
 
     void Update()
@@ -46,6 +47,9 @@ public class cameraMove : MonoBehaviour
             Debug.Log("shooted ?");
             ShootMask();
         }
+
+        if (persoNMObjectTab.Length == 0)
+            Debug.Log("end Game !");
     }
 
     public void OnTriggerEnter(Collider other)
@@ -78,5 +82,7 @@ public class cameraMove : MonoBehaviour
 
             actualTarget.tag = "MPerso";
         }
+        persoNMObjectTab = GameObject.FindGameObjectsWithTag("NMPerso");
+
     }
 }
