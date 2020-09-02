@@ -743,13 +743,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0309daed6b606a14c97272a0fdc74d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayStrength: 6
+  decayStrength: 5.25
   spammingStrength: 0.33
   mainTimer: 20
   subTimer: 3
   minDesiredStrength: 9
   maxDesiredStrength: 13
-  maxRotationStrength: 15
+  maxRotationStrength: 13
   strengthFillImage: {fileID: 936563481}
   timerFillImage: {fileID: 164870402}
   subTimerText: {fileID: 1675634138}

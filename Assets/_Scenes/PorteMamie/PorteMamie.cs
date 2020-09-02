@@ -1,18 +1,26 @@
-﻿using Rewired;
+﻿using System.Collections;
+using Rewired;
 using UnityEngine;
 
 public class PorteMamie : MonoBehaviour
 {
     Player player;
+    public GameObject door;
 
     bool gameWin;
     bool gameLose;
 
-    float mainTimer = 5;
-    float forcePorte = 100;
+    bool introDone = false;
 
-    // En attendant une variable globalScore à laquelle ajouter localScore.
-    float localScore;
+    float timer;
+    public float maxTimer;
+    public bool timerText;
+
+    [Range(0, 400)]
+    public float initialForce;
+    public float forceDecreasingSpeed;
+
+    float score;
 
     void Awake()
     {
@@ -21,42 +29,55 @@ public class PorteMamie : MonoBehaviour
 
     void Update()
     {
-        if (forcePorte >= 0 && mainTimer < 10)
+        if (timer < maxTimer && initialForce > 0)
         {
-            mainTimer += Time.deltaTime;
-            forcePorte -= Time.deltaTime * mainTimer * 10;
+            timer += Time.deltaTime;
+            initialForce -= Time.deltaTime * (timer + 5) * forceDecreasingSpeed;
 
-            if (Input.GetKeyDown(KeyCode.Space) || player.GetButtonDown("ActionButton")) forcePorte += 20;
-            if (forcePorte >= 400) Win();
+            if (Input.GetKeyDown(KeyCode.Space) || player.GetButtonDown("ActionButton"))
+            {
+                initialForce += 20;
+                score += 10;
+            }
+            if (initialForce < 0) Lose();
+            if (initialForce > 400)
+            {
+                initialForce = 400;
+                score += 50;
+            }
         }
-        else Lose();
+        else if (initialForce > 0) Win();
+        Anim();
     }
 
     void Win()
     {
-        forcePorte = 400;
-        localScore = Mathf.Round(10 - mainTimer) * 10;
-        Time.timeScale = 0;
         gameWin = true;
     }
 
     void Lose()
     {
-        mainTimer = 10;
-        localScore = 0;
-        Time.timeScale = 0;
         gameLose = true;
+        score = 0;
+    }
+
+    void Anim()
+    {
+        if (gameLose) door.GetComponent<Animator>().Play("doorClose");
     }
 
     void OnGUI()
     {
-        GUI.Box(new Rect((Screen.width - 100) / 2, (Screen.height - 600) / 2, 100, 25), "TIMER: " + string.Format("{0:0.0}", (10 - mainTimer)));
+        if (timerText) GUI.Box(new Rect((Screen.width - 100) / 2, 100, 100, 25), "TIMER: " + string.Format("{0:0.0}", timer));
+        GUI.Box(new Rect((Screen.width - 200) / 2, 60, 200, 25), "SCORE: " + score);
 
-        GUI.DrawTexture(new Rect((Screen.width - 400) / 2, (Screen.height + 600) / 2, 400, 20), Texture2D.grayTexture);
-        GUI.DrawTexture(new Rect((Screen.width - 400) / 2, (Screen.height + 600) / 2, forcePorte, 20), Texture2D.whiteTexture);
+        GUI.DrawTexture(new Rect((Screen.width - 800) / 2, Screen.height - 60, 800, 20), Texture2D.grayTexture);
+        GUI.DrawTexture(new Rect((Screen.width - 800) / 2, Screen.height - 60, timer * (800 / maxTimer), 20), Texture2D.whiteTexture);
+
+        GUI.DrawTexture(new Rect(Screen.width - 100, (Screen.height - 400) / 2, 20, 400), Texture2D.grayTexture);
+        GUI.DrawTexture(new Rect(Screen.width - 100, (Screen.height + 400) / 2, 20, -initialForce), Texture2D.whiteTexture);
 
         if (gameWin) GUI.Box(new Rect((Screen.width - 200) / 2, (Screen.height - 50) / 2, 200, 25), "SUCCES");
         if (gameLose) GUI.Box(new Rect((Screen.width - 200) / 2, (Screen.height - 50) / 2, 200, 25), "GAME OVER");
-        if (gameWin || gameLose) GUI.Box(new Rect((Screen.width - 200) / 2, (Screen.height + 50) / 2, 200, 25), "SCORE: " + localScore);
     }
 }
