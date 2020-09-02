@@ -9,7 +9,15 @@ public class CatLauncher : MonoBehaviour
     public List<GameObject> catsPrefabs;
     public int catAmount = 3;
     public float timeBetweenSpawn = 2.0f;
+    public float mintimeBetweenSpawn = 1.0f;
+    public float maxtimeBetweenSpawn = 4.0f;
     private float spawnClock = 0.0f;
+
+    private void Start()
+    {
+        timeBetweenSpawn = Random.Range(mintimeBetweenSpawn, maxtimeBetweenSpawn);
+        catAmount++;
+    }
     private void Update()
     {
         if(catAmount > 0)
@@ -19,8 +27,11 @@ public class CatLauncher : MonoBehaviour
             {
                 LaunchCat();
                 spawnClock = 0.0f;
+                timeBetweenSpawn = Random.Range(mintimeBetweenSpawn, maxtimeBetweenSpawn);
             }
         }
+        else
+            GameManager.Instance.LaunchTransition();
     }
 
     public void LaunchCat()
