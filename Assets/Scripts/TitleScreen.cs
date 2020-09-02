@@ -17,7 +17,8 @@ public class TitleScreen : MonoBehaviour
     {
         if (player.GetButtonDown("ActionButton"))
         {
-            Debug.Log("Start Game !"); 
+            Debug.Log("Start Game !");
+            GameManager.Instance.StartGame();
         }
     }
 }
