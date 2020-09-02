@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NMPerso
   - MPerso
+  - Cat
   layers:
   - Default
   - TransparentFX
