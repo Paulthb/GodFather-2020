@@ -10,6 +10,7 @@ public class PorteMamie : MonoBehaviour
     public GameObject gentil;
     public GameObject mamie;
     public GameObject deathMamie;
+    public GameObject backgroundMask;
 
     bool gameWin;
     bool gameLose;
@@ -79,6 +80,7 @@ public class PorteMamie : MonoBehaviour
 
             mamie.SetActive(false);
             deathMamie.SetActive(true);
+            backgroundMask.SetActive(false);
         }
         if (gameWin)
         {
