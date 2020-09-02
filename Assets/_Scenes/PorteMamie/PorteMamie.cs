@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using Rewired;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PorteMamie : MonoBehaviour
 {
     Player player;
     public GameObject door;
+    public GameObject gentil;
+    public GameObject mamie;
+    public GameObject deathMamie;
 
     bool gameWin;
     bool gameLose;
@@ -21,6 +25,9 @@ public class PorteMamie : MonoBehaviour
     public float forceDecreasingSpeed;
 
     float score;
+
+    public Image timerFill;
+    public Image forceFill;
 
     void Awake()
     {
@@ -63,7 +70,16 @@ public class PorteMamie : MonoBehaviour
 
     void Anim()
     {
-        if (gameLose) door.GetComponent<Animator>().Play("doorClose");
+        if (gameLose)
+        {
+            door.GetComponent<Animator>().Play("doorClose");
+            door.SetActive(false);
+
+            gentil.GetComponent<Animator>().Play("dropDoor");
+
+            mamie.SetActive(false);
+            deathMamie.SetActive(true);
+        }
     }
 
     void OnGUI()
@@ -71,11 +87,13 @@ public class PorteMamie : MonoBehaviour
         if (timerText) GUI.Box(new Rect((Screen.width - 100) / 2, 100, 100, 25), "TIMER: " + string.Format("{0:0.0}", timer));
         GUI.Box(new Rect((Screen.width - 200) / 2, 60, 200, 25), "SCORE: " + score);
 
-        GUI.DrawTexture(new Rect((Screen.width - 800) / 2, Screen.height - 60, 800, 20), Texture2D.grayTexture);
-        GUI.DrawTexture(new Rect((Screen.width - 800) / 2, Screen.height - 60, timer * (800 / maxTimer), 20), Texture2D.whiteTexture);
+        // GUI.DrawTexture(new Rect((Screen.width - 800) / 2, Screen.height - 60, 800, 20), Texture2D.grayTexture);
+        // GUI.DrawTexture(new Rect((Screen.width - 800) / 2, Screen.height - 60, timer * (800 / maxTimer), 20), Texture2D.whiteTexture);
+        timerFill.fillAmount = (timer * .1F) / (maxTimer * .1F);
 
-        GUI.DrawTexture(new Rect(Screen.width - 100, (Screen.height - 400) / 2, 20, 400), Texture2D.grayTexture);
-        GUI.DrawTexture(new Rect(Screen.width - 100, (Screen.height + 400) / 2, 20, -initialForce), Texture2D.whiteTexture);
+        // GUI.DrawTexture(new Rect(Screen.width - 100, (Screen.height - 400) / 2, 20, 400), Texture2D.grayTexture);
+        // GUI.DrawTexture(new Rect(Screen.width - 100, (Screen.height + 400) / 2, 20, -initialForce), Texture2D.whiteTexture);
+        forceFill.fillAmount = (initialForce * .01F) * .4F;
 
         if (gameWin) GUI.Box(new Rect((Screen.width - 200) / 2, (Screen.height - 50) / 2, 200, 25), "SUCCES");
         if (gameLose) GUI.Box(new Rect((Screen.width - 200) / 2, (Screen.height - 50) / 2, 200, 25), "GAME OVER");
