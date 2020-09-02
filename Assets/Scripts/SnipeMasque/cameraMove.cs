@@ -49,7 +49,7 @@ public class cameraMove : MonoBehaviour
         }
 
         if (persoNMObjectTab.Length == 0)
-            Debug.Log("end Game !");
+            GameManager.Instance.LaunchTransition();
     }
 
     public void OnTriggerEnter(Collider other)

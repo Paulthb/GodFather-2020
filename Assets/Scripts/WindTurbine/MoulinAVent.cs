@@ -70,6 +70,7 @@ public class MoulinAVent : MonoBehaviour
             {
                 //Défaite
                 end = true;
+                GameManager.Instance.LaunchTransition();
             }
             else
             {
@@ -84,6 +85,7 @@ public class MoulinAVent : MonoBehaviour
                     {
                         //Victoire
                         end = true;
+                        GameManager.Instance.LaunchTransition();
                     }
                 }
                 else

@@ -53,6 +53,7 @@ public class PorteMamie : MonoBehaviour
     void Win()
     {
         gameWin = true;
+        GameManager.Instance.LaunchTransition();
     }
 
     void Lose()
