@@ -67,6 +67,7 @@ public class PorteMamie : MonoBehaviour
     {
         gameLose = true;
         score = 0;
+        GameManager.Instance.LaunchTransition();
     }
 
     void Anim()
