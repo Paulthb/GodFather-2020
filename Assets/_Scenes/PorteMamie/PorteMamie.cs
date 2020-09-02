@@ -29,6 +29,7 @@ public class PorteMamie : MonoBehaviour
 
     public Image timerFill;
     public Image forceFill;
+    public Text text;
 
     void Awake()
     {
@@ -91,7 +92,8 @@ public class PorteMamie : MonoBehaviour
     void OnGUI()
     {
         if (timerText) GUI.Box(new Rect((Screen.width - 100) / 2, 100, 100, 25), "TIMER: " + string.Format("{0:0.0}", timer));
-        GUI.Box(new Rect((Screen.width - 200) / 2, 60, 200, 25), "SCORE: " + score);
+        // GUI.Box(new Rect((Screen.width - 200) / 2, 60, 200, 25), "SCORE: " + score);
+        text.text = score.ToString();
 
         // GUI.DrawTexture(new Rect((Screen.width - 800) / 2, Screen.height - 60, 800, 20), Texture2D.grayTexture);
         // GUI.DrawTexture(new Rect((Screen.width - 800) / 2, Screen.height - 60, timer * (800 / maxTimer), 20), Texture2D.whiteTexture);
