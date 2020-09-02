@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Rewired;
+﻿using Rewired;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -74,7 +73,6 @@ public class PorteMamie : MonoBehaviour
     {
         if (gameLose)
         {
-            door.GetComponent<Animator>().Play("doorClose");
             door.SetActive(false);
 
             gentil.GetComponent<Animator>().Play("dropDoor");
@@ -85,6 +83,7 @@ public class PorteMamie : MonoBehaviour
         }
         if (gameWin)
         {
+            door.GetComponent<Animator>().Play("doorClose");
             gentil.GetComponent<Animator>().Play("happy");
         }
     }
