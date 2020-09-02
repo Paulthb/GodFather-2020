@@ -20,7 +20,7 @@ public class PorteMamie : MonoBehaviour
     public float maxTimer;
     public bool timerText;
 
-    [Range(0, 400)]
+    [Range(0, 100)]
     public float initialForce;
     public float forceDecreasingSpeed;
 
@@ -43,13 +43,13 @@ public class PorteMamie : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) || player.GetButtonDown("ActionButton"))
             {
-                initialForce += 20;
+                initialForce += 5;
                 score += 10;
             }
             if (initialForce < 0) Lose();
-            if (initialForce > 400)
+            if (initialForce > 100)
             {
-                initialForce = 400;
+                initialForce = 100;
                 score += 50;
             }
         }
@@ -80,6 +80,10 @@ public class PorteMamie : MonoBehaviour
             mamie.SetActive(false);
             deathMamie.SetActive(true);
         }
+        if (gameWin)
+        {
+            gentil.GetComponent<Animator>().Play("happy");
+        }
     }
 
     void OnGUI()
@@ -93,9 +97,9 @@ public class PorteMamie : MonoBehaviour
 
         // GUI.DrawTexture(new Rect(Screen.width - 100, (Screen.height - 400) / 2, 20, 400), Texture2D.grayTexture);
         // GUI.DrawTexture(new Rect(Screen.width - 100, (Screen.height + 400) / 2, 20, -initialForce), Texture2D.whiteTexture);
-        forceFill.fillAmount = (initialForce * .01F) * .4F;
+        forceFill.fillAmount = initialForce * .01F;
 
-        if (gameWin) GUI.Box(new Rect((Screen.width - 200) / 2, (Screen.height - 50) / 2, 200, 25), "SUCCES");
-        if (gameLose) GUI.Box(new Rect((Screen.width - 200) / 2, (Screen.height - 50) / 2, 200, 25), "GAME OVER");
+        // if (gameWin) GUI.Box(new Rect((Screen.width - 200) / 2, (Screen.height - 50) / 2, 200, 25), "SUCCES");
+        // if (gameLose) GUI.Box(new Rect((Screen.width - 200) / 2, (Screen.height - 50) / 2, 200, 25), "GAME OVER");
     }
 }
