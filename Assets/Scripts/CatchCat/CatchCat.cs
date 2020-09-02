@@ -24,7 +24,6 @@ public class CatchCat : MonoBehaviour
         if(collision.CompareTag("Cat"))
         {
             catCatched++;
-            Destroy(collision.gameObject);
         }
     }
 }

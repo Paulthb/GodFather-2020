@@ -37,15 +37,15 @@ public class MoulinAVent : MonoBehaviour
     public Text subTimerText;
 
     [Header("Visuel")]
-    public SpriteRenderer mrSimple;
-    public SpriteRenderer kid;
+    public Animator kidAnim;
+    public Animator mrSimpleAnim;
     public SpriteRenderer wind;
     public GameObject turbine;
     public List<Sprite> mrSimpleSprites = new List<Sprite>(3);
-    public List<Sprite> kidSprites = new List<Sprite>(3);
     public List<Sprite> windSprites = new List<Sprite>(3);
     public float rotationSpeed;
 
+    public float strengthFill = 0.0f;
     private void Start()
     {
         _subTimerValue = subTimer;
@@ -63,6 +63,7 @@ public class MoulinAVent : MonoBehaviour
     
     void Update()
     {
+        strengthFill = rotationStrength / maxRotationStrength;
         if(!end)
         {
             mainClock += Time.deltaTime;
@@ -158,27 +159,10 @@ public class MoulinAVent : MonoBehaviour
     public void UpdateVisuals()
     {
         turbine.transform.Rotate(Vector3.forward * rotationStrength * Time.deltaTime * rotationSpeed);
+        kidAnim.SetFloat("Strength", rotationStrength);
+        mrSimpleAnim.SetFloat("Strength", rotationStrength);
         if(rotationStrength <= 0)
             wind.sprite = null;
 
-        if (rotationStrength > 0 && rotationStrength < maxRotationStrength/3)
-        {
-            mrSimple.sprite = mrSimpleSprites[0];
-            kid.sprite = kidSprites[0];
-            wind.sprite = windSprites[0];
-        }
-        else if(rotationStrength > maxRotationStrength / 3 && rotationStrength <  2*maxRotationStrength / 3)
-        {
-            mrSimple.sprite = mrSimpleSprites[1];
-            kid.sprite = kidSprites[1];
-            wind.sprite = windSprites[1];
-
-        }
-        else if(rotationStrength > 2 * maxRotationStrength / 3)
-        {
-            mrSimple.sprite = mrSimpleSprites[2];
-            kid.sprite = kidSprites[2];
-            wind.sprite = windSprites[2];
-        }
     }
 }
