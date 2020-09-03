@@ -19,8 +19,6 @@ public class Fauteuil : MonoBehaviour
     public GameObject voiture1;
 
     public AudioSource audioSource;
-    public AudioClip audioClip0;
-    public AudioClip audioClip1;
 
     public Text text;
     public Image button;
@@ -35,6 +33,8 @@ public class Fauteuil : MonoBehaviour
     public float timerMin;
     public float timerMax;
     public float timeLeftToPlayer;
+
+    bool playAudio;
 
     void Awake()
     {
@@ -53,6 +53,7 @@ public class Fauteuil : MonoBehaviour
                 if (-timer >= timeLeftToPlayer) Lose();
                 if (rewiredPlayer.GetButtonDown("ActionButton") || Input.GetKeyDown(KeyCode.E)) Win();
 
+                GameObject.Find("audioDing").GetComponent<AudioSource>().enabled = true;
                 feu.GetComponent<SpriteRenderer>().sprite = feuRouge;
                 feuPieton.GetComponent<SpriteRenderer>().sprite = feuPietonVert;
                 button.enabled = true;
@@ -72,7 +73,6 @@ public class Fauteuil : MonoBehaviour
         text.text = "Reaction Time: " + string.Format("{0:0.00}", -timer) + " seconds, Score: " + score;
         fauteuil.GetComponent<Animator>().Play("walk");
         StartCoroutine(wait());
-
     }
 
     void Lose()
@@ -97,6 +97,8 @@ public class Fauteuil : MonoBehaviour
         feuPieton.GetComponent<SpriteRenderer>().sprite = feuPietonRouge;
         voiture1.GetComponent<SpriteRenderer>().enabled = true;
         voiture1.GetComponent<Animator>().Play("road1");
+        voiture1.GetComponent<AudioSource>().enabled = true;
+        GameObject.Find("audioVroum").GetComponent<AudioSource>().enabled = true;
         audioSource.Stop();
         SoundManager.Instance.StartWin();
         GameManager.Instance.AddScore(score);
