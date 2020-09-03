@@ -785,9 +785,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decayStrength: 3
   spammingStrength: 0.15
-  mainTimer: 20
+  mainTimer: 10
   subTimer: 3
-  minDesiredStrength: 7
+  minDesiredStrength: 7.5
   maxDesiredStrength: 10
   maxRotationStrength: 13
   strengthFillImage: {fileID: 936563481}
