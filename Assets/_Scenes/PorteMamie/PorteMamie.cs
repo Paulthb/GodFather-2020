@@ -1,4 +1,5 @@
-﻿using Rewired;
+﻿using System.Collections;
+using Rewired;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,12 @@ public class PorteMamie : MonoBehaviour
     public GameObject mamie;
     public GameObject deathMamie;
     public GameObject backgroundMask;
+
+    public AudioSource audioSource;
+    public AudioClip audioClip0;
+    public AudioClip audioClip1;
+    public AudioClip audioClip2;
+    public AudioClip audioClip3;
 
     bool gameWin;
     bool gameLose;
@@ -33,6 +40,8 @@ public class PorteMamie : MonoBehaviour
     void Awake()
     {
         player = ReInput.players.GetPlayer(0);
+
+        audioSource.PlayOneShot(audioClip0);
     }
 
     void Update()
@@ -47,28 +56,35 @@ public class PorteMamie : MonoBehaviour
                 initialForce += 5;
                 score += 10;
             }
-            if (initialForce < 0) Lose();
+            if (initialForce < 0) StartCoroutine(Lose());
             if (initialForce > 100)
             {
                 initialForce = 100;
                 score += 50;
             }
         }
-        else if (initialForce > 0) Win();
+        else if (initialForce > 0) StartCoroutine(Win());
         Anim();
     }
 
-    void Win()
+    IEnumerator Win()
     {
         gameWin = true;
         GameManager.Instance.LaunchTransition();
+        audioSource.Stop();
+        audioSource.PlayOneShot(audioClip2);
+        yield return null;
     }
 
-    void Lose()
+    IEnumerator Lose()
     {
         gameLose = true;
         score = 0;
         GameManager.Instance.LaunchTransition();
+        audioSource.Stop();
+        audioSource.PlayOneShot(audioClip1);
+        audioSource.PlayOneShot(audioClip3);
+        yield return null;
     }
 
     void Anim()
@@ -93,18 +109,9 @@ public class PorteMamie : MonoBehaviour
     void OnGUI()
     {
         if (timerText) GUI.Box(new Rect((Screen.width - 100) / 2, 100, 100, 25), "TIMER: " + string.Format("{0:0.0}", timer));
-        // GUI.Box(new Rect((Screen.width - 200) / 2, 60, 200, 25), "SCORE: " + score);
         text.text = score.ToString();
 
-        // GUI.DrawTexture(new Rect((Screen.width - 800) / 2, Screen.height - 60, 800, 20), Texture2D.grayTexture);
-        // GUI.DrawTexture(new Rect((Screen.width - 800) / 2, Screen.height - 60, timer * (800 / maxTimer), 20), Texture2D.whiteTexture);
         timerFill.fillAmount = (timer * .1F) / (maxTimer * .1F);
-
-        // GUI.DrawTexture(new Rect(Screen.width - 100, (Screen.height - 400) / 2, 20, 400), Texture2D.grayTexture);
-        // GUI.DrawTexture(new Rect(Screen.width - 100, (Screen.height + 400) / 2, 20, -initialForce), Texture2D.whiteTexture);
         forceFill.fillAmount = initialForce * .01F;
-
-        // if (gameWin) GUI.Box(new Rect((Screen.width - 200) / 2, (Screen.height - 50) / 2, 200, 25), "SUCCES");
-        // if (gameLose) GUI.Box(new Rect((Screen.width - 200) / 2, (Screen.height - 50) / 2, 200, 25), "GAME OVER");
     }
 }
