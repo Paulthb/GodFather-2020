@@ -8,6 +8,7 @@ public class watergame : MonoBehaviour
     public int waterAmount = 0;
     public int waterNeeded = 0;
     public float mainTimer = 20.0f;
+    private float mainClock = 0.0f;
 
     public Image timerFillImage;
     public SpriteRenderer Plant;
@@ -22,8 +23,9 @@ public class watergame : MonoBehaviour
     {
         if(!hasEnded)
         {
-            mainTimer -= Time.deltaTime;
-            if (mainTimer <= 0)
+            mainClock += Time.deltaTime;
+            timerFillImage.fillAmount = mainClock / mainTimer;
+            if (mainClock >= mainTimer)
             {
                 //Défaite
                 hasEnded = true;
