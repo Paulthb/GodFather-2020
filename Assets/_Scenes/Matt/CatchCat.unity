@@ -5763,20 +5763,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4615152663766346489, guid: 610e4882831c75b44bb55b3f0ccf1d0c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4907454424430806587, guid: 610e4882831c75b44bb55b3f0ccf1d0c,
         type: 3}
       propertyPath: m_Name
       value: Decor
-      objectReference: {fileID: 0}
-    - target: {fileID: 5361726859768330802, guid: 610e4882831c75b44bb55b3f0ccf1d0c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7195708883307941438, guid: 610e4882831c75b44bb55b3f0ccf1d0c,
         type: 3}

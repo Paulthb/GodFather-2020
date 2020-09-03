@@ -8,6 +8,7 @@ public class watergame : MonoBehaviour
     public int waterAmount = 0;
     public int waterNeeded = 0;
     public float mainTimer = 20.0f;
+    private float mainClock = 0.0f;
 
     public Image timerFillImage;
     public SpriteRenderer Plant;
@@ -22,8 +23,9 @@ public class watergame : MonoBehaviour
     {
         if(!hasEnded)
         {
-            mainTimer -= Time.deltaTime;
-            if (mainTimer <= 0)
+            mainClock += Time.deltaTime;
+            timerFillImage.fillAmount = mainClock / mainTimer;
+            if (mainClock >= mainTimer)
             {
                 //Défaite
                 hasEnded = true;
@@ -38,6 +40,7 @@ public class watergame : MonoBehaviour
                         {
                             Plant.sprite = plantStates[0];
                             state = 1;
+                            GetComponent<AudioSource>().Play();
                         }
                         break;
                     case 1:
@@ -45,12 +48,14 @@ public class watergame : MonoBehaviour
                         {
                             Plant.sprite = plantStates[1];
                             state = 2;
+                            GetComponent<AudioSource>().Play();
                         }
                         break;
                     case 2:
                         if(waterAmount >= waterNeeded)
                         {
                             Plant.sprite = plantStates[2];
+                            GetComponent<AudioSource>().Play();
                         }
                         break;
                 }

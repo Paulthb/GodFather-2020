@@ -15,8 +15,6 @@ public class PorteMamie : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip audioClip0;
     public AudioClip audioClip1;
-    public AudioClip audioClip2;
-    public AudioClip audioClip3;
 
     bool gameWin;
     bool gameLose;
@@ -51,7 +49,7 @@ public class PorteMamie : MonoBehaviour
             timer += Time.deltaTime;
             initialForce -= Time.deltaTime * (timer + 5) * forceDecreasingSpeed;
 
-            if (Input.GetKeyDown(KeyCode.Space) || player.GetButtonDown("ActionButton"))
+            if (player.GetButtonDown("ActionButton") || Input.GetKeyDown(KeyCode.E))
             {
                 initialForce += 5;
                 score += 10;
@@ -70,21 +68,23 @@ public class PorteMamie : MonoBehaviour
     IEnumerator Win()
     {
         gameWin = true;
-        GameManager.Instance.LaunchTransition();
         audioSource.Stop();
-        audioSource.PlayOneShot(audioClip2);
-        yield return null;
+        SoundManager.Instance.StartWin();
+        GameManager.Instance.AddScore(score);
+        yield return new WaitForSeconds(2);
+        GameManager.Instance.LaunchTransition();
     }
 
     IEnumerator Lose()
     {
         gameLose = true;
         score = 0;
-        GameManager.Instance.LaunchTransition();
         audioSource.Stop();
         audioSource.PlayOneShot(audioClip1);
-        audioSource.PlayOneShot(audioClip3);
-        yield return null;
+        SoundManager.Instance.StartLoose();
+        GameManager.Instance.AddScore(score);
+        yield return new WaitForSeconds(2);
+        GameManager.Instance.LaunchTransition();
     }
 
     void Anim()

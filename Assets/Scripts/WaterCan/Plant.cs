@@ -5,6 +5,13 @@ using UnityEngine;
 public class Plant : MonoBehaviour
 {
     public watergame manager;
+    public AudioClip glouglou;
+    private AudioSource _audio;
+    private void Start()
+    {
+        _audio = GetComponent<AudioSource>();
+        _audio.clip = glouglou;
+    }
     private void OnParticleCollision(GameObject other)
     {
         List<ParticleCollisionEvent> events;
@@ -43,6 +50,8 @@ public class Plant : MonoBehaviour
                 {
                     m_Particles[particleId].remainingLifetime = -1;
                     manager.waterAmount++;
+                    if (!_audio.isPlaying)
+                        _audio.Play();
                 }
             }
         }
