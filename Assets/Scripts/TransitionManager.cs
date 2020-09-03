@@ -5,7 +5,7 @@ using UnityEngine;
 public class TransitionManager : MonoBehaviour
 {
     [SerializeField]
-    private Animation transitionAnime = null;
+    private Animator transitionAnime = null;
 
     //private bool isAnimationLaunched = false;
 
@@ -31,17 +31,18 @@ public class TransitionManager : MonoBehaviour
 
     public void StartTransition()
     {
-
         Debug.Log("animation launched");
-        transitionAnime.Play("FirstAnimationIn");
-        
+        transitionAnime.SetBool("TransitionIn", true);
+        transitionAnime.SetBool("TransitionOut", false);
+        //transitionAnime.Play("Transition");
+
     }
 
     public void EndAnimation()
     {
-
         Debug.Log("animation ended");
-        transitionAnime.Play("FirstAnimationOut");
-       
+        transitionAnime.SetBool("TransitionOut", true);
+        transitionAnime.SetBool("TransitionIn", false);
+        //transitionAnime.Play("Transition 1");
     }
 }

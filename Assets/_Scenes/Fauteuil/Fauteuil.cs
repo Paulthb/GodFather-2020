@@ -72,6 +72,7 @@ public class Fauteuil : MonoBehaviour
         text.text = "Reaction Time: " + string.Format("{0:0.00}", -timer) + " seconds, Score: " + score;
         fauteuil.GetComponent<Animator>().Play("walk");
         StartCoroutine(wait());
+
     }
 
     void Lose()
