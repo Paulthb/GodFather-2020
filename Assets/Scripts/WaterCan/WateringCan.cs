@@ -14,9 +14,11 @@ public class WateringCan : MonoBehaviour
 
     private void Update()
     {
-        float x = player.GetAxis("X_Axis") * speed * Time.deltaTime;
-        float y = player.GetAxis("Y_Axis") * speed * Time.deltaTime;
-        transform.position = new Vector3(transform.position.x + x, transform.position.y + y, 0);
+        float x = transform.position.x + player.GetAxis("X_Axis") * speed * Time.deltaTime;
+        float y = transform.position.y + player.GetAxis("Y_Axis") * speed * Time.deltaTime;
+        x = Mathf.Clamp(x, Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector3(1920, 0, 0)).x);
+        y = Mathf.Clamp(y, Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector3(0, 1080, 0)).y);
+        transform.position = new Vector3(x, y, 0);
     }
 }
 

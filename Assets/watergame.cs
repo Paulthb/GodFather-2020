@@ -41,7 +41,7 @@ public class watergame : MonoBehaviour
                         }
                         break;
                     case 1:
-                        if (waterAmount >= waterNeeded / 2)
+                        if (waterAmount >= 2*waterNeeded / 3)
                         {
                             Plant.sprite = plantStates[1];
                             state = 2;
