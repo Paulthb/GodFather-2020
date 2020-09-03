@@ -8,6 +8,7 @@ public class Cinema : MonoBehaviour
     GameObject[] disps;
     GameObject[] guys;
     public GameObject hand;
+    public Text text;
     public Image timerFill;
     public Sprite lol0;
     public Sprite lol1;
@@ -22,7 +23,7 @@ public class Cinema : MonoBehaviour
     float timer;
     public float maxTimer;
     public int handSpeed;
-    public bool onGoodChair;
+    bool onGoodChair;
 
     void Awake()
     {
@@ -68,13 +69,13 @@ public class Cinema : MonoBehaviour
 
     void Win()
     {
-        Debug.Log("Win");
         gameWin = true;
+        Time.timeScale = 0;
+        text.enabled = true;
     }
 
     void Lose()
     {
-        Debug.Log("Lose");
         gameLose = true;
         foreach (GameObject guy in guys)
         {
@@ -89,13 +90,11 @@ public class Cinema : MonoBehaviour
 
     void OnTriggerEnter(Collider c)
     {
-        Debug.Log(onGoodChair);
         onGoodChair = true;
     }
 
     void OnTriggerExit(Collider c)
     {
-        Debug.Log(onGoodChair);
         onGoodChair = false;
     }
 }
