@@ -1,6 +1,8 @@
 ﻿using Rewired;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+//using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +15,8 @@ public class cameraMove : MonoBehaviour
     //for next juicy feature if needed
     private bool onValideTarget = false;
     private GameObject actualTarget = null;
+
+    private bool isGameDone = false;
 
     [SerializeField]
     private float mainTimer = 20.0f;
@@ -29,6 +33,8 @@ public class cameraMove : MonoBehaviour
     [SerializeField]
     private Image timerFillImage = null;
 
+    [SerializeField]
+    private float actualScore = 1200;
 
     void Start()
     {
@@ -54,8 +60,12 @@ public class cameraMove : MonoBehaviour
             ShootMask();
         }
 
-        if (persoNMObjectTab.Length == 0)
+        if (persoNMObjectTab.Length == 0 && !isGameDone)
+        {
+            isGameDone = true;
+            GameManager.Instance.AddScore(actualScore);
             GameManager.Instance.LaunchTransition();
+        }
 
 
         mainClock += Time.deltaTime;
@@ -65,6 +75,8 @@ public class cameraMove : MonoBehaviour
             GameManager.Instance.LaunchTransition();
         }
         timerFillImage.fillAmount = mainClock / mainTimer;
+        CalculateScore();
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -98,6 +110,11 @@ public class cameraMove : MonoBehaviour
             actualTarget.tag = "MPerso";
         }
         persoNMObjectTab = GameObject.FindGameObjectsWithTag("NMPerso");
+    }
 
+    public void CalculateScore()
+    {
+        actualScore = Mathf.Lerp(1200, 0, timerFillImage.fillAmount);
+        //Debug.Log("actual score is : " + actualScore);
     }
 }
