@@ -7,6 +7,9 @@ TagManager:
   - NMPerso
   - MPerso
   - Cat
+  - CatGround
+  - CatSaver
+  - CatKill
   layers:
   - Default
   - TransparentFX
