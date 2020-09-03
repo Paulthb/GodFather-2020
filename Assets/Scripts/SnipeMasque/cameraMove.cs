@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class cameraMove : MonoBehaviour
 {
@@ -11,8 +12,11 @@ public class cameraMove : MonoBehaviour
 
     //for next juicy feature if needed
     private bool onValideTarget = false;
-
     private GameObject actualTarget = null;
+
+    [SerializeField]
+    private float mainTimer = 20.0f;
+    private float mainClock = 0.0f;
 
     private GameObject[] persoNMObjectTab;
     [SerializeField]
@@ -22,6 +26,8 @@ public class cameraMove : MonoBehaviour
     private Sprite Perso1M_Sprite = null;
     [SerializeField]
     private Sprite Perso2M_Sprite = null;
+    [SerializeField]
+    private Image timerFillImage = null;
 
 
     void Start()
@@ -50,6 +56,15 @@ public class cameraMove : MonoBehaviour
 
         if (persoNMObjectTab.Length == 0)
             GameManager.Instance.LaunchTransition();
+
+
+        mainClock += Time.deltaTime;
+        if (mainClock >= mainTimer)
+        {
+            //Défaite
+            GameManager.Instance.LaunchTransition();
+        }
+        timerFillImage.fillAmount = mainClock / mainTimer;
     }
 
     public void OnTriggerEnter(Collider other)
