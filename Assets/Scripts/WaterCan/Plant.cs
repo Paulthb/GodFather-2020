@@ -38,10 +38,6 @@ public class Plant : MonoBehaviour
                         break;
                     }
                     */
-                    if(i==numParticlesAlive-1)
-                    {
-                        Debug.Log("MiDist = " + minDist);
-                    }
                 }
                 if(particleId != -1)
                 {
