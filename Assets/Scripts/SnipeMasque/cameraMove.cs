@@ -1,6 +1,6 @@
-﻿using Rewired;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Rewired;
 using UnityEngine;
 
 public class cameraMove : MonoBehaviour
@@ -22,7 +22,6 @@ public class cameraMove : MonoBehaviour
     private Sprite Perso1M_Sprite = null;
     [SerializeField]
     private Sprite Perso2M_Sprite = null;
-
 
     void Start()
     {
@@ -54,7 +53,7 @@ public class cameraMove : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "NMPerso")
+        if (other.gameObject.tag == "NMPerso")
         {
             onValideTarget = true;
             Debug.Log("target validate");
