@@ -1477,8 +1477,8 @@ MonoBehaviour:
   backgroundMask: {fileID: 1867356674}
   maxTimer: 5
   timerText: 0
-  initialForce: 30
-  forceDecreasingSpeed: 3
+  initialForce: 45
+  forceDecreasingSpeed: 5
   timerFill: {fileID: 362688347}
   forceFill: {fileID: 1462535640}
   text: {fileID: 787145196}
