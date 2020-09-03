@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class watergame : MonoBehaviour
 {
     public int waterAmount = 0;
-    public int waterNeeded = 0;
+    public int waterNeeded = 100;
     public float mainTimer = 20.0f;
     private float mainClock = 0.0f;
 
@@ -30,6 +30,7 @@ public class watergame : MonoBehaviour
                 //Défaite
                 hasEnded = true;
                 SoundManager.Instance.StartLoose();
+                GameManager.Instance.LaunchTransition();
             }
             else
             {
@@ -63,8 +64,8 @@ public class watergame : MonoBehaviour
                 {
                     //Victoire
                     hasEnded = true;
-                    GameManager.Instance.AddScore((int)(mainTimer * 100));
-                    SoundManager.Instance.StartLoose();
+                    GameManager.Instance.AddScore(((int)(mainTimer-mainClock) * 100));
+                    SoundManager.Instance.StartWin();
                     GameManager.Instance.LaunchTransition();
                 }
             }

@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Matt/CatchCat.unity
     guid: 1a79fb20b218874468488a3332147b6c
+  - enabled: 1
+    path: Assets/_Scenes/Matt/Plant.unity
+    guid: 8b7552e2fdd66114eba1457d2110134d
   - enabled: 0
     path: Assets/_Scenes/Cinema/Cinema.unity
     guid: 5cf5951d76ded3e499fc8932fd06b7b0
