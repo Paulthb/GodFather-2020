@@ -1,4 +1,5 @@
-﻿using Rewired;
+﻿using System.Collections;
+using Rewired;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,15 @@ public class Fauteuil : MonoBehaviour
     public Sprite feuVert;
     public Sprite feuOrange;
     public Sprite feuRouge;
+    public GameObject feuPieton;
+    public Sprite feuPietonVert;
+    public Sprite feuPietonRouge;
+    public GameObject voiture0;
+    public GameObject voiture1;
+
+    public AudioSource audioSource;
+    public AudioClip audioClip0;
+    public AudioClip audioClip1;
 
     public Text text;
     public Image button;
@@ -44,6 +54,7 @@ public class Fauteuil : MonoBehaviour
                 if (rewiredPlayer.GetButtonDown("ActionButton") || Input.GetKeyDown(KeyCode.E)) Win();
 
                 feu.GetComponent<SpriteRenderer>().sprite = feuRouge;
+                feuPieton.GetComponent<SpriteRenderer>().sprite = feuPietonVert;
                 button.enabled = true;
                 fill0.enabled = true;
                 fill1.enabled = true;
@@ -55,18 +66,35 @@ public class Fauteuil : MonoBehaviour
 
     void Win()
     {
+        score = timeLeftToPlayer * 1000 - Mathf.Floor(-timer * 1000);
         gameWin = true;
         text.enabled = true;
-        text.text = "Reaction Time: " + string.Format("{0:0.00}", -timer) + " seconds";
+        text.text = "Reaction Time: " + string.Format("{0:0.00}", -timer) + " seconds, Score: " + score;
+        fauteuil.GetComponent<Animator>().Play("walk");
+        StartCoroutine(wait());
     }
 
     void Lose()
     {
+        score = 0;
         gameLose = true;
         text.enabled = true;
-        text.text = "Game Over";
+        text.text = "Game Over, Score: " + score;
         GameObject.Find("Meuf").GetComponent<SpriteRenderer>().enabled = true;
         GameObject.Find("Mec").GetComponent<SpriteRenderer>().enabled = true;
         fauteuil.GetComponent<SpriteRenderer>().enabled = false;
+        audioSource.Stop();
+        audioSource.PlayOneShot(audioClip1);
+    }
+
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(2);
+        feu.GetComponent<SpriteRenderer>().sprite = feuVert;
+        feuPieton.GetComponent<SpriteRenderer>().sprite = feuPietonRouge;
+        voiture1.GetComponent<SpriteRenderer>().enabled = true;
+        voiture1.GetComponent<Animator>().Play("road1");
+        audioSource.Stop();
+        audioSource.PlayOneShot(audioClip0);
     }
 }

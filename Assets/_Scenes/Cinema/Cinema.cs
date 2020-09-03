@@ -1,4 +1,5 @@
-﻿using Rewired;
+﻿using System.Collections;
+using Rewired;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,11 @@ public class Cinema : MonoBehaviour
     public Sprite lol2;
     public Sprite lol3;
     Sprite newSprite;
+
+    public AudioSource audioSource;
+    public AudioClip audioClip0;
+    public AudioClip audioClip1;
+    public AudioClip audioClip2;
 
     bool gameWin;
     bool gameLose;
@@ -38,6 +44,8 @@ public class Cinema : MonoBehaviour
         }
 
         guys = GameObject.FindGameObjectsWithTag("guy");
+
+        audioSource.PlayOneShot(audioClip0);
     }
 
     void Update()
@@ -73,11 +81,14 @@ public class Cinema : MonoBehaviour
         gameWin = true;
         Time.timeScale = 0;
         text.enabled = true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(audioClip1);
     }
 
     void Lose()
     {
         gameLose = true;
+        Time.timeScale = 0;
         foreach (GameObject guy in guys)
         {
             int lol = Mathf.RoundToInt(Random.Range(0, 3));
@@ -87,6 +98,8 @@ public class Cinema : MonoBehaviour
             if (lol == 3) newSprite = lol3;
             guy.GetComponent<SpriteRenderer>().sprite = newSprite;
         }
+        audioSource.Stop();
+        audioSource.PlayOneShot(audioClip2);
     }
 
     void OnTriggerEnter(Collider c)
