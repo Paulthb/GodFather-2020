@@ -81,7 +81,7 @@ public class cameraMove : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "NMPerso")
+        if (other.gameObject.tag == "NMPerso")
         {
             onValideTarget = true;
             Debug.Log("target validate");

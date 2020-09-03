@@ -10,6 +10,8 @@ TagManager:
   - CatGround
   - CatSaver
   - CatKill
+  - disp
+  - guy
   layers:
   - Default
   - TransparentFX
