@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Matt/CatchCat.unity
     guid: 1a79fb20b218874468488a3332147b6c
+  - enabled: 0
+    path: Assets/_Scenes/Cinema/Cinema.unity
+    guid: 5cf5951d76ded3e499fc8932fd06b7b0
+  - enabled: 0
+    path: Assets/_Scenes/Fauteuil/Fauteuil.unity
+    guid: e86871b661222bd4c813bc683802ee12
   - enabled: 1
     path: Assets/_Scenes/Pol/HighScoreScene.unity
     guid: 0285d0edd23b36443bcaab0594fb9ad4
