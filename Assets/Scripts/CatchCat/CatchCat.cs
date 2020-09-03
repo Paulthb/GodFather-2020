@@ -10,10 +10,11 @@ public class CatchCat : MonoBehaviour
     public CatLauncher launcher;
     private int catToCatch = 0;
     private Player player;
+    private CatCatchManager _manager;
     private void Start()
     {
         player = ReInput.players.GetPlayer(0);
-        catToCatch = (3 * launcher.catAmount) / 4;
+        _manager = FindObjectOfType<CatCatchManager>();
     }
     void Update()
     {
@@ -24,14 +25,5 @@ public class CatchCat : MonoBehaviour
         float x = transform.position.x + player.GetAxis("X_Axis") * Time.deltaTime * playerSpeed;
         x = Mathf.Clamp(x, Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector3(1920, 0, 0)).x);
         transform.position = new Vector3(x, transform.position.y, transform.position.z);
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Cat"))
-        {
-            catCatched++;
-            //if(catCatched >= catToCatch)
-            //    //GameManager.Instance.LaunchTransition();
-        }
     }
 }
