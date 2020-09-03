@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using Rewired;
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using Rewired;
+//using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class cameraMove : MonoBehaviour
 {
@@ -11,8 +14,13 @@ public class cameraMove : MonoBehaviour
 
     //for next juicy feature if needed
     private bool onValideTarget = false;
-
     private GameObject actualTarget = null;
+
+    private bool isGameDone = false;
+
+    [SerializeField]
+    private float mainTimer = 20.0f;
+    private float mainClock = 0.0f;
 
     private GameObject[] persoNMObjectTab;
     [SerializeField]
@@ -22,6 +30,11 @@ public class cameraMove : MonoBehaviour
     private Sprite Perso1M_Sprite = null;
     [SerializeField]
     private Sprite Perso2M_Sprite = null;
+    [SerializeField]
+    private Image timerFillImage = null;
+
+    [SerializeField]
+    private float actualScore = 1200;
 
     void Start()
     {
@@ -47,8 +60,23 @@ public class cameraMove : MonoBehaviour
             ShootMask();
         }
 
-        if (persoNMObjectTab.Length == 0)
+        if (persoNMObjectTab.Length == 0 && !isGameDone)
+        {
+            isGameDone = true;
+            GameManager.Instance.AddScore(actualScore);
             GameManager.Instance.LaunchTransition();
+        }
+
+
+        mainClock += Time.deltaTime;
+        if (mainClock >= mainTimer)
+        {
+            //Défaite
+            GameManager.Instance.LaunchTransition();
+        }
+        timerFillImage.fillAmount = mainClock / mainTimer;
+        CalculateScore();
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -82,6 +110,11 @@ public class cameraMove : MonoBehaviour
             actualTarget.tag = "MPerso";
         }
         persoNMObjectTab = GameObject.FindGameObjectsWithTag("NMPerso");
+    }
 
+    public void CalculateScore()
+    {
+        actualScore = Mathf.Lerp(1200, 0, timerFillImage.fillAmount);
+        //Debug.Log("actual score is : " + actualScore);
     }
 }

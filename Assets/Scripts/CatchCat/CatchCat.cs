@@ -30,8 +30,8 @@ public class CatchCat : MonoBehaviour
         if(collision.CompareTag("Cat"))
         {
             catCatched++;
-            if(catCatched >= catToCatch)
-                GameManager.Instance.LaunchTransition();
+            //if(catCatched >= catToCatch)
+            //    //GameManager.Instance.LaunchTransition();
         }
     }
 }

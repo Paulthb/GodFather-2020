@@ -744,7 +744,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: e87e4d5a34e42fa4594a77828889ad58, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
@@ -1477,8 +1477,8 @@ MonoBehaviour:
   backgroundMask: {fileID: 1867356674}
   maxTimer: 5
   timerText: 0
-  initialForce: 30
-  forceDecreasingSpeed: 3
+  initialForce: 45
+  forceDecreasingSpeed: 5
   timerFill: {fileID: 362688347}
   forceFill: {fileID: 1462535640}
   text: {fileID: 787145196}
