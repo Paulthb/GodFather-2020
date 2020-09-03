@@ -3933,7 +3933,7 @@ MonoBehaviour:
   lol3: {fileID: 21300000, guid: 654fbfb9473d9f841a6e9bf0fe426157, type: 3}
   maxTimer: 5
   handSpeed: 15
-  onGoodChair: 0
+  numberOfDisps: 4
 --- !u!4 &881608103
 Transform:
   m_ObjectHideFlags: 0
