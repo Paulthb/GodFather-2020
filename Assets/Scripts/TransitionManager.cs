@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TransitionManager : MonoBehaviour
 {
@@ -35,7 +36,6 @@ public class TransitionManager : MonoBehaviour
         transitionAnime.SetBool("TransitionIn", true);
         transitionAnime.SetBool("TransitionOut", false);
         //transitionAnime.Play("Transition");
-
     }
 
     public void EndAnimation()

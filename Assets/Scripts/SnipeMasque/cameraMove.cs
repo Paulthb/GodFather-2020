@@ -36,11 +36,17 @@ public class cameraMove : MonoBehaviour
     [SerializeField]
     private float actualScore = 1200;
 
+    [SerializeField]
+    private GameObject masqueSnipePrefab = null;
+    private GameObject masqueSnipeGAO = null;
+
+
     void Start()
     {
         player = ReInput.players.GetPlayer(0);
         cameraTransform = GetComponent<Transform>();
         persoNMObjectTab = GameObject.FindGameObjectsWithTag("NMPerso");
+        //StartCoroutine(MasqueSnipeLifeTime());
     }
 
     void Update()
@@ -105,6 +111,8 @@ public class cameraMove : MonoBehaviour
         Sprite oldSprite = actualTarget.GetComponent<SpriteRenderer>().sprite;
         if (actualTarget.tag != "MPerso")
         {
+            //StartCoroutine(MasqueSnipeLifeTime());
+
             if (oldSprite.texture.name == "perso1_sm")
                 actualTarget.GetComponent<SpriteRenderer>().sprite = Perso1M_Sprite;
 
@@ -114,6 +122,19 @@ public class cameraMove : MonoBehaviour
             actualTarget.tag = "MPerso";
         }
         persoNMObjectTab = GameObject.FindGameObjectsWithTag("NMPerso");
+    }
+
+    public IEnumerator MasqueSnipeLifeTime()
+    {
+        bool isMasqueSnipe = false;
+        if (!isMasqueSnipe)
+        {
+            isMasqueSnipe = true;
+            masqueSnipeGAO = Instantiate(masqueSnipePrefab, this.transform);
+            //masqueSnipeGAO.transform.position = new Vector3(0, 0, 0.5f);
+        }
+        yield return new WaitForSeconds(1f);
+        Destroy(masqueSnipeGAO);
     }
 
     public void CalculateScore()
