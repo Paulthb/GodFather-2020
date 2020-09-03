@@ -23,13 +23,14 @@ public class Cinema : MonoBehaviour
     float timer;
     public float maxTimer;
     public int handSpeed;
+    public int numberOfDisps;
     bool onGoodChair;
 
     void Awake()
     {
         player = ReInput.players.GetPlayer(0);
 
-        int disp = Mathf.RoundToInt(Random.Range(0, 3));
+        int disp = Mathf.RoundToInt(Random.Range(0, numberOfDisps - 1));
         disps = GameObject.FindGameObjectsWithTag("disp");
         for (int i = 0; i < disps.Length; i++)
         {

@@ -11,7 +11,7 @@ public class Cat : MonoBehaviour
     private AudioSource _audio;
     private Animator _anim;
     private Rigidbody2D _rb;
-    private bool hasLanded = false;
+    public bool hasLanded = false;
     private bool hasLandedSafe = false;
     private void Awake()
     {
@@ -44,6 +44,7 @@ public class Cat : MonoBehaviour
             transform.position = new Vector3(transform.position.x, -3.03f, transform.position.z);
             transform.rotation = Quaternion.Euler(0, 0, 0);
             hasLanded = true;
+            FindObjectOfType<CatCatchManager>().catLanded++;
         }
         if (collision.CompareTag("CatSaver") && !hasLanded)
         {
@@ -55,8 +56,10 @@ public class Cat : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
             hasLanded = true;
             hasLandedSafe = true;
+            FindObjectOfType<CatCatchManager>().catCatched++;
+            FindObjectOfType<CatCatchManager>().catLanded++;
         }
-        if(collision.CompareTag("CatKill") && hasLandedSafe)
+        if (collision.CompareTag("CatKill") && hasLandedSafe)
         {
             Destroy(transform.gameObject);
         }

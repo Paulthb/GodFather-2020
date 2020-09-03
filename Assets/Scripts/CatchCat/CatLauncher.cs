@@ -16,7 +16,7 @@ public class CatLauncher : MonoBehaviour
     private void Start()
     {
         timeBetweenSpawn = Random.Range(mintimeBetweenSpawn, maxtimeBetweenSpawn);
-        catAmount++;
+        FindObjectOfType<CatCatchManager>().catLaunchedAmount = catAmount;
     }
     private void Update()
     {
@@ -30,8 +30,6 @@ public class CatLauncher : MonoBehaviour
                 timeBetweenSpawn = Random.Range(mintimeBetweenSpawn, maxtimeBetweenSpawn);
             }
         }
-        else
-            GameManager.Instance.LaunchTransition();
     }
 
     public void LaunchCat()
