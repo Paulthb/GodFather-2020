@@ -181,7 +181,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: e87e4d5a34e42fa4594a77828889ad58, type: 3}
     m_FontSize: 91
     m_FontStyle: 0
     m_BestFit: 0
@@ -588,7 +588,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: e87e4d5a34e42fa4594a77828889ad58, type: 3}
     m_FontSize: 91
     m_FontStyle: 1
     m_BestFit: 0
@@ -600,7 +600,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CAPTAIN GENTIL
+  m_Text: BE NICE
 --- !u!222 &887311178
 CanvasRenderer:
   m_ObjectHideFlags: 0
