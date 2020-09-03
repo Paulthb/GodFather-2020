@@ -85,7 +85,9 @@ public class Fauteuil : MonoBehaviour
         GameObject.Find("Mec").GetComponent<SpriteRenderer>().enabled = true;
         fauteuil.GetComponent<SpriteRenderer>().enabled = false;
         audioSource.Stop();
-        audioSource.PlayOneShot(audioClip1);
+        SoundManager.Instance.StartLoose();
+        GameManager.Instance.AddScore(score);
+        StartCoroutine(waitwait());
     }
 
     IEnumerator wait()
@@ -96,6 +98,15 @@ public class Fauteuil : MonoBehaviour
         voiture1.GetComponent<SpriteRenderer>().enabled = true;
         voiture1.GetComponent<Animator>().Play("road1");
         audioSource.Stop();
-        audioSource.PlayOneShot(audioClip0);
+        SoundManager.Instance.StartWin();
+        GameManager.Instance.AddScore(score);
+        yield return new WaitForSeconds(2);
+        GameManager.Instance.LaunchTransition();
+    }
+
+    IEnumerator waitwait()
+    {
+        yield return new WaitForSeconds(2);
+        GameManager.Instance.LaunchTransition();
     }
 }

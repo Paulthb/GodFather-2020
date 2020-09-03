@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Rewired;
+using UnityEngine;
 //using 
 
 public class TitleScreen : MonoBehaviour
@@ -15,7 +15,7 @@ public class TitleScreen : MonoBehaviour
 
     void Update()
     {
-        if (player.GetButtonDown("ActionButton"))
+        if (player.GetButtonDown("ActionButton") || Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Start Game !");
             GameManager.Instance.StartGame();

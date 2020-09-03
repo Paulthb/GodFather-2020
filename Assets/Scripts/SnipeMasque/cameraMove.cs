@@ -1,7 +1,7 @@
-﻿using Rewired;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Rewired;
 //using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,7 +40,6 @@ public class cameraMove : MonoBehaviour
     private GameObject masqueSnipePrefab = null;
     private GameObject masqueSnipeGAO = null;
 
-
     void Start()
     {
         player = ReInput.players.GetPlayer(0);
@@ -74,7 +73,6 @@ public class cameraMove : MonoBehaviour
             GameManager.Instance.LaunchTransition();
             SoundManager.Instance.StartWin();
         }
-
 
         mainClock += Time.deltaTime;
         if (mainClock >= mainTimer && !isGameDone)

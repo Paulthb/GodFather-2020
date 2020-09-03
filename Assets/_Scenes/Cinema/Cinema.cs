@@ -19,8 +19,6 @@ public class Cinema : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip audioClip0;
-    public AudioClip audioClip1;
-    public AudioClip audioClip2;
 
     bool gameWin;
     bool gameLose;
@@ -82,7 +80,9 @@ public class Cinema : MonoBehaviour
         Time.timeScale = 0;
         text.enabled = true;
         audioSource.Stop();
-        audioSource.PlayOneShot(audioClip1);
+        SoundManager.Instance.StartWin();
+        GameManager.Instance.AddScore(score);
+        StartCoroutine(wait());
     }
 
     void Lose()
@@ -99,7 +99,15 @@ public class Cinema : MonoBehaviour
             guy.GetComponent<SpriteRenderer>().sprite = newSprite;
         }
         audioSource.Stop();
-        audioSource.PlayOneShot(audioClip2);
+        SoundManager.Instance.StartLoose();
+        GameManager.Instance.AddScore(score);
+        StartCoroutine(wait());
+    }
+
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(2);
+        GameManager.Instance.LaunchTransition();
     }
 
     void OnTriggerEnter(Collider c)
