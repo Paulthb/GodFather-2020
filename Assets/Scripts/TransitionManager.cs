@@ -32,16 +32,16 @@ public class TransitionManager : MonoBehaviour
     public void StartTransition()
     {
 
-            Debug.Log("animation launched");
-            transitionAnime.Play("FirstAnimationIn");
+        Debug.Log("animation launched");
+        transitionAnime.Play("FirstAnimationIn");
         
     }
 
     public void EndAnimation()
     {
 
-            Debug.Log("animation ended");
-            transitionAnime.Play("FirstAnimationOut");
+        Debug.Log("animation ended");
+        transitionAnime.Play("FirstAnimationOut");
        
     }
 }

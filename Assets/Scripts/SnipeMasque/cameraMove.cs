@@ -62,17 +62,21 @@ public class cameraMove : MonoBehaviour
 
         if (persoNMObjectTab.Length == 0 && !isGameDone)
         {
+            //Victoire
             isGameDone = true;
             GameManager.Instance.AddScore(actualScore);
             GameManager.Instance.LaunchTransition();
+            SoundManager.Instance.StartWin();
         }
 
 
         mainClock += Time.deltaTime;
-        if (mainClock >= mainTimer)
+        if (mainClock >= mainTimer && !isGameDone)
         {
             //Défaite
+            isGameDone = true;
             GameManager.Instance.LaunchTransition();
+            SoundManager.Instance.StartLoose();
         }
         timerFillImage.fillAmount = mainClock / mainTimer;
         CalculateScore();

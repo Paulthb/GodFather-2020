@@ -6,6 +6,8 @@ public class SoundManager : MonoBehaviour
 {
 
     private AudioSource source = null;
+    [SerializeField]
+    private AudioSource sourceWL = null;
 
     [SerializeField]
     private AudioClip MainMenuSound = null;
@@ -52,13 +54,25 @@ public class SoundManager : MonoBehaviour
 
     public void StartWin()
     {
-        source.clip = WinSound;
-        source.Play();
+        source.volume = 0.1f;
+        sourceWL.clip = WinSound;
+        sourceWL.Play();
+        StartCoroutine(WLSoundCoroutine());
     }
 
     public void StartLoose()
     {
-        source.clip = LooseSound;
-        source.Play();
+        source.volume = 0.1f;
+        sourceWL.clip = LooseSound;
+        sourceWL.Play();
+        StartCoroutine(WLSoundCoroutine());
     }
+
+    public IEnumerator WLSoundCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        source.volume = 0.3f;
+    }
+
+
 }
