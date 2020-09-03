@@ -134,8 +134,9 @@ GameObject:
   - component: {fileID: 56763344}
   - component: {fileID: 56763343}
   - component: {fileID: 56763342}
+  - component: {fileID: 56763345}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: arrosoir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4928,13 +4929,27 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56763341}
-  m_LocalRotation: {x: 0.6770854, y: -0.20385142, z: -0.20385142, w: 0.6770854}
-  m_LocalPosition: {x: 1.61, y: 2.2482653, z: 0}
-  m_LocalScale: {x: 1.0180937, y: 1, z: 0.9848865}
-  m_Children: []
+  m_LocalRotation: {x: 0.6770854, y: -0.20385139, z: -0.20385139, w: 0.6770854}
+  m_LocalPosition: {x: 1.3, y: 2.31, z: 0}
+  m_LocalScale: {x: 1.0180938, y: 1, z: 0.98488665}
+  m_Children:
+  - {fileID: 756387263}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 161.895, y: 90, z: 90}
+--- !u!114 &56763345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56763341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d8a5a0b7f4ea3478fa90963c331e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
 --- !u!1 &462345378
 GameObject:
   m_ObjectHideFlags: 0
@@ -5015,7 +5030,7 @@ Transform:
   m_LocalScale: {x: 0.23560688, y: 0.23560688, z: 0.23560688}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &513095948
 GameObject:
@@ -5100,6 +5115,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &600975008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600975010}
+  - component: {fileID: 600975009}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &600975009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600975008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8205852918c264f45a2c9445ce599372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterAmount: 0
+  waterNeeded: 0
+  mainTimer: 20
+  timerFillImage: {fileID: 0}
+  Plant: {fileID: 0}
+  plantStates: []
+--- !u!4 &600975010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600975008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &755571081
 GameObject:
   m_ObjectHideFlags: 0
@@ -5180,7 +5244,7 @@ Transform:
   m_LocalScale: {x: 0.2842847, y: 0.2842847, z: 0.2842847}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &756387261
 GameObject:
@@ -5257,12 +5321,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 756387261}
-  m_LocalRotation: {x: -0, y: -0, z: 0.32873437, w: 0.9444224}
-  m_LocalPosition: {x: 2.65, y: 3.05, z: 0}
-  m_LocalScale: {x: 0.3807682, y: 0.31736696, z: 0.46085423}
+  m_LocalRotation: {x: -0.5724417, y: 0.41510308, z: 0.41510308, w: 0.5724417}
+  m_LocalPosition: {x: 0.66263634, y: 0, z: -1.4298927}
+  m_LocalScale: {x: 0.38535646, y: 0.31271157, z: 0.46085417}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 56763344}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 38.384}
 --- !u!1 &1346212066
 GameObject:
@@ -5334,7 +5398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7523b89ad9ef784e8d0d0d21e13c45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterCount: 0
+  manager: {fileID: 0}
 --- !u!1 &1652853595
 GameObject:
   m_ObjectHideFlags: 0

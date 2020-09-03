@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
+    public watergame manager;
     private void OnParticleCollision(GameObject other)
     {
         List<ParticleCollisionEvent> events;
@@ -45,7 +46,7 @@ public class Plant : MonoBehaviour
                 if(particleId != -1)
                 {
                     m_Particles[particleId].remainingLifetime = -1;
-                    waterCount++;
+                    manager.waterAmount++;
                 }
             }
         }
