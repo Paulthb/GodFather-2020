@@ -26,6 +26,12 @@ public class GameManager : MonoBehaviour
 
     private bool transitionRunning = false;
 
+    [SerializeField]
+    private HighScore highScoreData = null;
+
+    private bool isRunFinnished = false;
+
+
     #region Singleton Pattern
     private static GameManager _instance;
 
@@ -89,12 +95,20 @@ public class GameManager : MonoBehaviour
             SceneLeftInGame.RemoveAt(randGameId);
         }
         //Quand tout les minis jeux sont fait dans la run
-        else
+        else if(!isRunFinnished)
         {
-            SceneManager.LoadScene("MainMenu");
-            SceneLeftInGame.AddRange(SceneName);
+            isRunFinnished = true;
+            highScoreData.AddFinalScore(score);
+            SceneManager.LoadScene("HighScoreScene");
             SoundManager.Instance.StartMainMenu();
         }
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        SceneLeftInGame.AddRange(SceneName);
+        isRunFinnished = false;
     }
 
     public void AddScore(float newPoints)
