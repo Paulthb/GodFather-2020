@@ -18,6 +18,10 @@ public class Fauteuil : MonoBehaviour
     public GameObject voiture0;
     public GameObject voiture1;
 
+    public AudioSource audioSource;
+    public AudioClip audioClip0;
+    public AudioClip audioClip1;
+
     public Text text;
     public Image button;
     public Image fill0;
@@ -79,6 +83,8 @@ public class Fauteuil : MonoBehaviour
         GameObject.Find("Meuf").GetComponent<SpriteRenderer>().enabled = true;
         GameObject.Find("Mec").GetComponent<SpriteRenderer>().enabled = true;
         fauteuil.GetComponent<SpriteRenderer>().enabled = false;
+        audioSource.Stop();
+        audioSource.PlayOneShot(audioClip1);
     }
 
     IEnumerator wait()
@@ -88,5 +94,7 @@ public class Fauteuil : MonoBehaviour
         feuPieton.GetComponent<SpriteRenderer>().sprite = feuPietonRouge;
         voiture1.GetComponent<SpriteRenderer>().enabled = true;
         voiture1.GetComponent<Animator>().Play("road1");
+        audioSource.Stop();
+        audioSource.PlayOneShot(audioClip0);
     }
 }
