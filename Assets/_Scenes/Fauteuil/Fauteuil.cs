@@ -1,4 +1,5 @@
-﻿using Rewired;
+﻿using System.Collections;
+using Rewired;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,11 @@ public class Fauteuil : MonoBehaviour
     public Sprite feuVert;
     public Sprite feuOrange;
     public Sprite feuRouge;
+    public GameObject feuPieton;
+    public Sprite feuPietonVert;
+    public Sprite feuPietonRouge;
+    public GameObject voiture0;
+    public GameObject voiture1;
 
     public Text text;
     public Image button;
@@ -44,6 +50,7 @@ public class Fauteuil : MonoBehaviour
                 if (rewiredPlayer.GetButtonDown("ActionButton") || Input.GetKeyDown(KeyCode.E)) Win();
 
                 feu.GetComponent<SpriteRenderer>().sprite = feuRouge;
+                feuPieton.GetComponent<SpriteRenderer>().sprite = feuPietonVert;
                 button.enabled = true;
                 fill0.enabled = true;
                 fill1.enabled = true;
@@ -60,6 +67,7 @@ public class Fauteuil : MonoBehaviour
         text.enabled = true;
         text.text = "Reaction Time: " + string.Format("{0:0.00}", -timer) + " seconds, Score: " + score;
         fauteuil.GetComponent<Animator>().Play("walk");
+        StartCoroutine(wait());
     }
 
     void Lose()
@@ -71,5 +79,14 @@ public class Fauteuil : MonoBehaviour
         GameObject.Find("Meuf").GetComponent<SpriteRenderer>().enabled = true;
         GameObject.Find("Mec").GetComponent<SpriteRenderer>().enabled = true;
         fauteuil.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(2);
+        feu.GetComponent<SpriteRenderer>().sprite = feuVert;
+        feuPieton.GetComponent<SpriteRenderer>().sprite = feuPietonRouge;
+        voiture1.GetComponent<SpriteRenderer>().enabled = true;
+        voiture1.GetComponent<Animator>().Play("road1");
     }
 }
