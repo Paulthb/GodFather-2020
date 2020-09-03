@@ -516,6 +516,7 @@ MonoBehaviour:
   - SnipeMasque
   - PorteMamie
   - Matt
+  - CatchCat
 --- !u!4 &842976541
 Transform:
   m_ObjectHideFlags: 0
