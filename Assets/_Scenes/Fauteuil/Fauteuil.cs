@@ -62,7 +62,7 @@ public class Fauteuil : MonoBehaviour
 
     void Win()
     {
-        score = Mathf.Floor(-timer * 1000);
+        score = timeLeftToPlayer * 1000 - Mathf.Floor(-timer * 1000);
         gameWin = true;
         text.enabled = true;
         text.text = "Reaction Time: " + string.Format("{0:0.00}", -timer) + " seconds, Score: " + score;
