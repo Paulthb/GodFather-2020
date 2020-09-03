@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     private bool isRunFinnished = false;
 
+    [SerializeField]
+    private Text nextLevelText = null;
 
     #region Singleton Pattern
     private static GameManager _instance;
@@ -74,7 +77,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator TransitionCoroutine()
     {
-        //yield return null;
+        yield return new WaitForSeconds(1f);
         //start transition
         TransitionManager.Instance.StartTransition();
 
@@ -84,6 +87,33 @@ public class GameManager : MonoBehaviour
 
         transitionRunning = false;
         //end transition
+    }
+
+    public string NextLevelChoice()
+    {
+        int randGameId = Random.Range(0, SceneLeftInGame.Count);
+        if (SceneLeftInGame[randGameId] == "SnipeMasque")
+            return "Trouve la personne sans masque";
+
+        if (SceneLeftInGame[randGameId] == "PorteMamie")
+            return "Tiens la porte";
+
+        if (SceneLeftInGame[randGameId] == "Matt")
+            return "Souffle";
+
+        if (SceneLeftInGame[randGameId] == "CatchCat")
+            return "Rattrape les chats";
+
+        if (SceneLeftInGame[randGameId] == "Cinema")
+            return "Respecte la distanciation sociale";
+
+        if (SceneLeftInGame[randGameId] == "Fauteuil")
+            return "Aide mamie à traverser";
+
+        if (SceneLeftInGame[randGameId] == "Plant")
+            return "Arrose";
+        else
+            return "";
     }
 
     public void LaunchNextGame()
