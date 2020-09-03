@@ -31,7 +31,9 @@ public class GameManager : MonoBehaviour
     private HighScore highScoreData = null;
 
     private bool isRunFinnished = false;
+    private bool OnChangeLevel = false;
 
+    private string nextLevelString = "";
     [SerializeField]
     private Text nextLevelText = null;
 
@@ -77,52 +79,85 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator TransitionCoroutine()
     {
-        yield return new WaitForSeconds(1f);
         //start transition
+        yield return new WaitForSeconds(1f);
         TransitionManager.Instance.StartTransition();
+
+
+        yield return new WaitForSeconds(1f);
+        if (!OnChangeLevel)
+            nextLevelText.text = NextLevelChoice();
+
 
         yield return new WaitForSeconds(2f);
         LaunchNextGame();
-        TransitionManager.Instance.EndAnimation();
+        nextLevelText.text = "";
 
-        transitionRunning = false;
         //end transition
+        TransitionManager.Instance.EndAnimation();
+        transitionRunning = false;
+
+        OnChangeLevel = false;
     }
 
     public string NextLevelChoice()
     {
+        OnChangeLevel = true;
+        string nextLevelRule = "";
         int randGameId = Random.Range(0, SceneLeftInGame.Count);
+
         if (SceneLeftInGame[randGameId] == "SnipeMasque")
-            return "Trouve la personne sans masque";
+        {
+            nextLevelString = "SnipeMasque";
+            nextLevelRule = "Trouve la personne sans masque";
+        }
 
         if (SceneLeftInGame[randGameId] == "PorteMamie")
-            return "Tiens la porte";
+        {
+            nextLevelString = "PorteMamie";
+            nextLevelRule = "Tiens la porte";
+        }
 
         if (SceneLeftInGame[randGameId] == "Matt")
-            return "Souffle";
+        {
+            nextLevelString = "Matt";
+            nextLevelRule = "Souffle";
+        }
 
         if (SceneLeftInGame[randGameId] == "CatchCat")
-            return "Rattrape les chats";
+        {
+            nextLevelString = "CatchCat";
+            nextLevelRule = "Rattrape les chats";
+        }
 
         if (SceneLeftInGame[randGameId] == "Cinema")
-            return "Respecte la distanciation sociale";
+        {
+            nextLevelString = "Cinema";
+            nextLevelRule = "Respecte la distanciation sociale";
+        }
 
         if (SceneLeftInGame[randGameId] == "Fauteuil")
-            return "Aide mamie à traverser";
+        {
+            nextLevelString = "Fauteuil";
+            nextLevelRule = "Aide mamie à traverser";
+        }
 
         if (SceneLeftInGame[randGameId] == "Plant")
-            return "Arrose";
-        else
-            return "";
+        {
+            nextLevelString = "Plant";
+            nextLevelRule = "Arrose";
+        }
+
+        SceneLeftInGame.RemoveAt(randGameId);
+        return nextLevelRule;
     }
 
     public void LaunchNextGame()
     {
         if (SceneLeftInGame.Count != 0)
         {
-            int randGameId = Random.Range(0, SceneLeftInGame.Count);
-            SceneManager.LoadScene(SceneLeftInGame[randGameId]);
-            SceneLeftInGame.RemoveAt(randGameId);
+            SceneManager.LoadScene(nextLevelString);
+            //SceneLeftInGame.RemoveAt(randGameId);
         }
         //Quand tout les minis jeux sont fait dans la run
         else if(!isRunFinnished)

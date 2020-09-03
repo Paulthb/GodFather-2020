@@ -935,6 +935,7 @@ MonoBehaviour:
   - Matt
   - CatchCat
   highScoreData: {fileID: 11400000, guid: bffde9d583c61fa49b5cb4787831277e, type: 2}
+  nextLevelText: {fileID: 415351866}
 --- !u!4 &842976541
 Transform:
   m_ObjectHideFlags: 0
