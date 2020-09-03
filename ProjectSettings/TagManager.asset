@@ -12,6 +12,7 @@ TagManager:
   - CatKill
   - disp
   - guy
+  - Water
   layers:
   - Default
   - TransparentFX
