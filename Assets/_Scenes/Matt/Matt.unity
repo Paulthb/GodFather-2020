@@ -783,11 +783,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0309daed6b606a14c97272a0fdc74d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayStrength: 5.25
-  spammingStrength: 0.33
+  decayStrength: 3
+  spammingStrength: 0.15
   mainTimer: 20
   subTimer: 3
-  minDesiredStrength: 8
+  minDesiredStrength: 7
   maxDesiredStrength: 10
   maxRotationStrength: 13
   strengthFillImage: {fileID: 936563481}
