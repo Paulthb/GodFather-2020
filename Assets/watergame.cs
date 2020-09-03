@@ -40,6 +40,7 @@ public class watergame : MonoBehaviour
                         {
                             Plant.sprite = plantStates[0];
                             state = 1;
+                            GetComponent<AudioSource>().Play();
                         }
                         break;
                     case 1:
@@ -47,12 +48,14 @@ public class watergame : MonoBehaviour
                         {
                             Plant.sprite = plantStates[1];
                             state = 2;
+                            GetComponent<AudioSource>().Play();
                         }
                         break;
                     case 2:
                         if(waterAmount >= waterNeeded)
                         {
                             Plant.sprite = plantStates[2];
+                            GetComponent<AudioSource>().Play();
                         }
                         break;
                 }

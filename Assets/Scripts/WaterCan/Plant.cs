@@ -9,6 +9,7 @@ public class Plant : MonoBehaviour
     private AudioSource _audio;
     private void Start()
     {
+        _audio = GetComponent<AudioSource>();
         _audio.clip = glouglou;
     }
     private void OnParticleCollision(GameObject other)
