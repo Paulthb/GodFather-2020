@@ -76,6 +76,9 @@ public class Cinema : MonoBehaviour
 
     void Win()
     {
+        score = maxTimer * 100 - Mathf.Floor(timer * 100);
+        GameObject.Find("player").GetComponent<SpriteRenderer>().enabled = false;
+        GameObject.Find("playerSit").GetComponent<SpriteRenderer>().enabled = true;
         gameWin = true;
         Time.timeScale = 0;
         text.enabled = true;
@@ -87,6 +90,7 @@ public class Cinema : MonoBehaviour
 
     void Lose()
     {
+        score = 0;
         gameLose = true;
         Time.timeScale = 0;
         foreach (GameObject guy in guys)

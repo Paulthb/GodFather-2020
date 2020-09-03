@@ -11,6 +11,7 @@ public class PorteMamie : MonoBehaviour
     public GameObject mamie;
     public GameObject deathMamie;
     public GameObject backgroundMask;
+    public Animator button;
 
     public AudioSource audioSource;
     public AudioClip audioClip0;
@@ -68,6 +69,7 @@ public class PorteMamie : MonoBehaviour
     IEnumerator Win()
     {
         gameWin = true;
+        button.enabled = false;
         audioSource.Stop();
         SoundManager.Instance.StartWin();
         GameManager.Instance.AddScore(score);
@@ -78,6 +80,7 @@ public class PorteMamie : MonoBehaviour
     IEnumerator Lose()
     {
         gameLose = true;
+        button.enabled = false;
         score = 0;
         audioSource.Stop();
         audioSource.PlayOneShot(audioClip1);
