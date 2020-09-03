@@ -47,11 +47,14 @@ public class GameManager : MonoBehaviour
     {
         SceneLeftInGame = new List<string>();
         SceneLeftInGame.AddRange(SceneName);
+
+        SoundManager.Instance.StartMainMenu();
     }
 
     public void StartGame()
     {
         LaunchTransition();
+        SoundManager.Instance.StartMiniGame();
     }
 
     public void LaunchTransition()
@@ -90,6 +93,7 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("MainMenu");
             SceneLeftInGame.AddRange(SceneName);
+            SoundManager.Instance.StartMainMenu();
         }
     }
 
