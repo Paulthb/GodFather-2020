@@ -44,8 +44,7 @@ public class MoulinAVent : MonoBehaviour
     public List<Sprite> mrSimpleSprites = new List<Sprite>(3);
     public List<Sprite> windSprites = new List<Sprite>(3);
     public float rotationSpeed;
-
-    public float strengthFill = 0.0f;
+    public int points = 0;
     private void Start()
     {
         _subTimerValue = subTimer;
@@ -63,7 +62,6 @@ public class MoulinAVent : MonoBehaviour
     
     void Update()
     {
-        strengthFill = rotationStrength / maxRotationStrength;
         if(!end)
         {
             mainClock += Time.deltaTime;
@@ -86,6 +84,8 @@ public class MoulinAVent : MonoBehaviour
                     {
                         //Victoire
                         end = true;
+                        points = (int)((mainTimer - mainClock)*100);
+                        GameManager.Instance.AddScore(points);
                         GameManager.Instance.LaunchTransition();
                     }
                 }
