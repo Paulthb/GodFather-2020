@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     private bool animIn = false;
     private bool animOut = false;
 
-    private bool transitionRunning = false;
+    public bool transitionRunning = false;
 
     [SerializeField]
     private HighScore highScoreData = null;
@@ -87,10 +87,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (!OnChangeLevel)
             nextLevelText.text = NextLevelChoice();
-
+        
 
         yield return new WaitForSeconds(1.5f);
-        LaunchNextGame();
+        if (nextLevelString != "")
+            LaunchNextGame();
+        else
+            LaunchHighScoreScene();
         nextLevelText.text = "";
 
         //end transition
@@ -104,63 +107,87 @@ public class GameManager : MonoBehaviour
     {
         OnChangeLevel = true;
         string nextLevelRule = "";
-        int randGameId = Random.Range(0, SceneLeftInGame.Count);
-
-        if (SceneLeftInGame[randGameId] == "SnipeMasque")
+        if (SceneLeftInGame.Count > 0)
         {
-            nextLevelString = "SnipeMasque";
-            nextLevelRule = "Trouve la personne sans masque";
+            int randGameId = Random.Range(0, SceneLeftInGame.Count);
+
+            Debug.Log(randGameId);
+
+            if (SceneLeftInGame[randGameId] == "SnipeMasque")
+            {
+                nextLevelString = "SnipeMasque";
+                nextLevelRule = "Trouve la personne sans masque";
+            }
+
+            else if (SceneLeftInGame[randGameId] == "PorteMamie")
+            {
+                nextLevelString = "PorteMamie";
+                nextLevelRule = "Tiens la porte";
+            }
+
+            else if (SceneLeftInGame[randGameId] == "Matt")
+            {
+                nextLevelString = "Matt";
+                nextLevelRule = "Souffle";
+            }
+
+            else if (SceneLeftInGame[randGameId] == "CatchCat")
+            {
+                nextLevelString = "CatchCat";
+                nextLevelRule = "Rattrape les chats";
+            }
+
+            else if (SceneLeftInGame[randGameId] == "Cinema")
+            {
+                nextLevelString = "Cinema";
+                nextLevelRule = "Respecte la distanciation sociale";
+            }
+
+            else if (SceneLeftInGame[randGameId] == "Fauteuil")
+            {
+                nextLevelString = "Fauteuil";
+                nextLevelRule = "Aide mamie à traverser";
+            }
+
+            else if (SceneLeftInGame[randGameId] == "Plant")
+            {
+                nextLevelString = "Plant";
+                nextLevelRule = "Arrose";
+            }
+
+            SceneLeftInGame.RemoveAt(randGameId);
         }
 
-        if (SceneLeftInGame[randGameId] == "PorteMamie")
+        else
         {
-            nextLevelString = "PorteMamie";
-            nextLevelRule = "Tiens la porte";
+            Debug.Log("FIN DE RUN !");
+            nextLevelString = "";
+            nextLevelRule = "";
         }
 
-        if (SceneLeftInGame[randGameId] == "Matt")
-        {
-            nextLevelString = "Matt";
-            nextLevelRule = "Souffle";
-        }
-
-        if (SceneLeftInGame[randGameId] == "CatchCat")
-        {
-            nextLevelString = "CatchCat";
-            nextLevelRule = "Rattrape les chats";
-        }
-
-        if (SceneLeftInGame[randGameId] == "Cinema")
-        {
-            nextLevelString = "Cinema";
-            nextLevelRule = "Respecte la distanciation sociale";
-        }
-
-        if (SceneLeftInGame[randGameId] == "Fauteuil")
-        {
-            nextLevelString = "Fauteuil";
-            nextLevelRule = "Aide mamie à traverser";
-        }
-
-        if (SceneLeftInGame[randGameId] == "Plant")
-        {
-            nextLevelString = "Plant";
-            nextLevelRule = "Arrose";
-        }
-
-        SceneLeftInGame.RemoveAt(randGameId);
         return nextLevelRule;
     }
 
     public void LaunchNextGame()
     {
-        if (SceneLeftInGame.Count != 0)
-        {
-            SceneManager.LoadScene(nextLevelString);
+        Debug.Log(nextLevelString);
+        SceneManager.LoadScene(nextLevelString);
+
+
             //SceneLeftInGame.RemoveAt(randGameId);
-        }
-        //Quand tout les minis jeux sont fait dans la run
-        else if(!isRunFinnished)
+        ////Quand tout les minis jeux sont fait dans la run
+        //else if(!isRunFinnished)
+        //{
+        //    isRunFinnished = true;
+        //    highScoreData.AddFinalScore(score);
+        //    SceneManager.LoadScene("HighScoreScene");
+        //    SoundManager.Instance.StartMainMenu();
+        //}
+    }
+
+    public void LaunchHighScoreScene()
+    {
+        if (!isRunFinnished)
         {
             isRunFinnished = true;
             highScoreData.AddFinalScore(score);

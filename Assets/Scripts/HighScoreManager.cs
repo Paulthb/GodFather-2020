@@ -52,13 +52,16 @@ public class HighScoreManager : MonoBehaviour
 
         foreach(float highscore in highScoreData.finalScoreList)
         {
-            scorePos = new Vector3(0, scorePosY, 0);
-            GameObject scoreGE = Instantiate(scorePrefab, ScoresPoint);
-            scoreGE.transform.localPosition = scorePos;
-            scorePosY -= 100;
+            if (scoreId < 7)
+            {
+                scorePos = new Vector3(0, scorePosY, 0);
+                GameObject scoreGE = Instantiate(scorePrefab, ScoresPoint);
+                scoreGE.transform.localPosition = scorePos;
+                scorePosY -= 100;
 
-            scoreGE.GetComponent<Text>().text = scoreId + ".    <color=teal>" + highscore + "</color>";
-            scoreId++;
+                scoreGE.GetComponent<Text>().text = scoreId + ".    <color=teal>" + (int)highscore + "</color>";
+                scoreId++;
+            }
         }
     }
 }

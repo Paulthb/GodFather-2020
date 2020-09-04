@@ -21,7 +21,7 @@ public class watergame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!hasEnded)
+        if(!hasEnded && !GameManager.Instance.transitionRunning)
         {
             mainClock += Time.deltaTime;
             timerFillImage.fillAmount = mainClock / mainTimer;
