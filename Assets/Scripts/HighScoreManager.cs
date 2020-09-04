@@ -57,7 +57,7 @@ public class HighScoreManager : MonoBehaviour
             scoreGE.transform.localPosition = scorePos;
             scorePosY -= 100;
 
-            scoreGE.GetComponent<Text>().text = scoreId + ".    <color=teal>" + highscore + "</color>";
+            scoreGE.GetComponent<Text>().text = scoreId + ".    <color=teal>" + (int)highscore + "</color>";
             scoreId++;
         }
     }

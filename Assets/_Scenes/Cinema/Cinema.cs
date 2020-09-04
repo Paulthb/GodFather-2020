@@ -82,6 +82,7 @@ public class Cinema : MonoBehaviour
         gameWin = true;
         Time.timeScale = 0;
         text.enabled = true;
+        text.text = "Good Job, Score: " + score.ToString();
         audioSource.Stop();
         SoundManager.Instance.StartWin();
         GameManager.Instance.AddScore(score);
@@ -102,6 +103,8 @@ public class Cinema : MonoBehaviour
             if (lol == 3) newSprite = lol3;
             guy.GetComponent<SpriteRenderer>().sprite = newSprite;
         }
+        text.enabled = true;
+        text.text = "Game Over, Score: " + score.ToString();
         audioSource.Stop();
         SoundManager.Instance.StartLoose();
         GameManager.Instance.AddScore(score);
