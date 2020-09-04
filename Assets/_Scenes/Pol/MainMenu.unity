@@ -933,10 +933,10 @@ MonoBehaviour:
   - SnipeMasque
   - PorteMamie
   - Fauteuil
-  - Cinema
+  - Plant
   - Matt
   - CatchCat
-  - Plant
+  transitionRunning: 0
   highScoreData: {fileID: 11400000, guid: bffde9d583c61fa49b5cb4787831277e, type: 2}
   nextLevelText: {fileID: 415351866}
 --- !u!4 &842976541

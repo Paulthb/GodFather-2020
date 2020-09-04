@@ -40,6 +40,11 @@ public class cameraMove : MonoBehaviour
     private GameObject masqueSnipePrefab = null;
     private GameObject masqueSnipeGAO = null;
 
+    [SerializeField]
+    private Sprite masqueSprite = null;
+    [SerializeField]
+    private GameObject masqueMan = null;
+
     void Start()
     {
         player = ReInput.players.GetPlayer(0);
@@ -119,6 +124,9 @@ public class cameraMove : MonoBehaviour
                 actualTarget.GetComponent<SpriteRenderer>().sprite = Perso2M_Sprite;
 
             actualTarget.tag = "MPerso";
+
+            masqueMan.GetComponent<Animator>().enabled = false;
+            masqueMan.GetComponent<SpriteRenderer>().sprite = masqueSprite;
         }
         persoNMObjectTab = GameObject.FindGameObjectsWithTag("NMPerso");
     }

@@ -1813,6 +1813,8 @@ MonoBehaviour:
   actualScore: 1200
   masqueSnipePrefab: {fileID: 5024050176995060094, guid: db4552e76b8a8074b86bcc4470c14def,
     type: 3}
+  masqueSprite: {fileID: 21300000, guid: 2c05a031ca3a728448e0d3800d564869, type: 3}
+  masqueMan: {fileID: 1806436563}
 --- !u!65 &710674205
 BoxCollider:
   m_ObjectHideFlags: 0
