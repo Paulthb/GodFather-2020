@@ -62,7 +62,7 @@ public class MoulinAVent : MonoBehaviour
     
     void Update()
     {
-        if(!end)
+        if(!end && !GameManager.Instance.transitionRunning)
         {
             mainClock += Time.deltaTime;
             if (mainClock >= mainTimer)
