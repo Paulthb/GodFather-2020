@@ -1489,7 +1489,7 @@ MonoBehaviour:
   fill1: {fileID: 132677845}
   timerMin: 1
   timerMax: 4
-  timeLeftToPlayer: 2
+  timeLeftToPlayer: 1
 --- !u!1 &1481143681
 GameObject:
   m_ObjectHideFlags: 0
