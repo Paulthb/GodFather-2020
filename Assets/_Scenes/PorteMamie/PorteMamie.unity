@@ -11338,7 +11338,7 @@ MonoBehaviour:
   audioClip1: {fileID: 8300000, guid: b0a28899122be8145880fb93a4e8d669, type: 3}
   maxTimer: 5
   timerText: 0
-  initialForce: 45
+  initialForce: 50
   forceDecreasingSpeed: 5
   timerFill: {fileID: 362688347}
   forceFill: {fileID: 1462535640}
