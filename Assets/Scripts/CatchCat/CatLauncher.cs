@@ -20,7 +20,7 @@ public class CatLauncher : MonoBehaviour
     }
     private void Update()
     {
-        if(catAmount > 0)
+        if(catAmount > 0 && !GameManager.Instance.transitionRunning)
         {
             spawnClock += Time.deltaTime;
             if(spawnClock >= timeBetweenSpawn)
