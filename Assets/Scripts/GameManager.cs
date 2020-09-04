@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     private bool animIn = false;
     private bool animOut = false;
 
-    private bool transitionRunning = false;
+    public bool transitionRunning = false;
 
     [SerializeField]
     private HighScore highScoreData = null;

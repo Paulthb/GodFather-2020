@@ -4506,7 +4506,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 100}
+  m_SizeDelta: {x: 1000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &820669928
 MonoBehaviour:
@@ -5184,6 +5184,7 @@ MonoBehaviour:
   lol3: {fileID: 21300000, guid: 654fbfb9473d9f841a6e9bf0fe426157, type: 3}
   audioSource: {fileID: 1854302979}
   audioClip0: {fileID: 8300000, guid: e8e4bf421a5994a4b85fb349c809f4aa, type: 3}
+  audioClip1: {fileID: 8300000, guid: c368653da3d43ae47b67441ca34a3729, type: 3}
   maxTimer: 5
   handSpeed: 15
   numberOfDisps: 4
