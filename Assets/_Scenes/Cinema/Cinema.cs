@@ -19,6 +19,7 @@ public class Cinema : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip audioClip0;
+    public AudioClip audioClip1;
 
     bool gameWin;
     bool gameLose;
@@ -106,6 +107,7 @@ public class Cinema : MonoBehaviour
         text.enabled = true;
         text.text = "Game Over, Score: " + score.ToString();
         audioSource.Stop();
+        audioSource.PlayOneShot(audioClip1);
         SoundManager.Instance.StartLoose();
         GameManager.Instance.AddScore(score);
         StartCoroutine(wait());
