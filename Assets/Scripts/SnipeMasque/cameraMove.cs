@@ -74,7 +74,8 @@ public class cameraMove : MonoBehaviour
             SoundManager.Instance.StartWin();
         }
 
-        mainClock += Time.deltaTime;
+        if(!GameManager.Instance.transitionRunning)
+            mainClock += Time.deltaTime;
         if (mainClock >= mainTimer && !isGameDone)
         {
             //Défaite
