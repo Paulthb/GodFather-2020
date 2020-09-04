@@ -21,8 +21,7 @@ public class Cinema : MonoBehaviour
     public AudioClip audioClip0;
     public AudioClip audioClip1;
 
-    bool gameWin;
-    bool gameLose;
+    bool hasEnded = false;
     float score;
 
     float timer;
@@ -49,7 +48,7 @@ public class Cinema : MonoBehaviour
 
     void Update()
     {
-        if (!gameLose)
+        if (!hasEnded && !GameManager.Instance.transitionRunning)
         {
             timer += Time.deltaTime;
             timerFill.fillAmount = (timer * .1F) / (maxTimer * .1F);
@@ -77,24 +76,22 @@ public class Cinema : MonoBehaviour
 
     void Win()
     {
+        hasEnded = true;
         score = maxTimer * 100 - Mathf.Floor(timer * 100);
         GameObject.Find("player").GetComponent<SpriteRenderer>().enabled = false;
         GameObject.Find("playerSit").GetComponent<SpriteRenderer>().enabled = true;
-        gameWin = true;
-        Time.timeScale = 0;
         text.enabled = true;
         text.text = "Good Job, Score: " + score.ToString();
         audioSource.Stop();
-        SoundManager.Instance.StartWin();
         GameManager.Instance.AddScore(score);
-        StartCoroutine(wait());
+        SoundManager.Instance.StartWin();
+        GameManager.Instance.LaunchTransition();
     }
 
     void Lose()
     {
+        hasEnded = true;
         score = 0;
-        gameLose = true;
-        Time.timeScale = 0;
         foreach (GameObject guy in guys)
         {
             int lol = Mathf.RoundToInt(Random.Range(0, 3));
@@ -108,9 +105,9 @@ public class Cinema : MonoBehaviour
         text.text = "Game Over, Score: " + score.ToString();
         audioSource.Stop();
         audioSource.PlayOneShot(audioClip1);
-        SoundManager.Instance.StartLoose();
         GameManager.Instance.AddScore(score);
-        StartCoroutine(wait());
+        SoundManager.Instance.StartLoose();
+        GameManager.Instance.LaunchTransition();
     }
 
     IEnumerator wait()
