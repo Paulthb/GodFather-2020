@@ -84,10 +84,10 @@ public class PorteMamie : MonoBehaviour
         score = 0;
         audioSource.Stop();
         audioSource.PlayOneShot(audioClip1);
-        // SoundManager.Instance.StartLoose();
-        // GameManager.Instance.AddScore(score);
+        SoundManager.Instance.StartLoose();
+        GameManager.Instance.AddScore(score);
         yield return new WaitForSeconds(2);
-        // GameManager.Instance.LaunchTransition();
+        GameManager.Instance.LaunchTransition();
     }
 
     void Anim()
