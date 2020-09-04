@@ -14,6 +14,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private AudioClip MiniGameSound = null;
     [SerializeField]
+    private AudioClip HighScoreSound = null;
+    [SerializeField]
     private AudioClip WinSound = null;
     [SerializeField]
     private AudioClip LooseSound = null;
@@ -49,6 +51,12 @@ public class SoundManager : MonoBehaviour
     public void StartMiniGame()
     {
         source.clip = MiniGameSound;
+        source.Play();
+    }
+
+    public void StartHighScore()
+    {
+        source.clip = HighScoreSound;
         source.Play();
     }
 

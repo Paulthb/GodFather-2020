@@ -192,12 +192,13 @@ public class GameManager : MonoBehaviour
             isRunFinnished = true;
             highScoreData.AddFinalScore(score);
             SceneManager.LoadScene("HighScoreScene");
-            SoundManager.Instance.StartMainMenu();
+            SoundManager.Instance.StartHighScore();
         }
     }
 
     public void BackToMainMenu()
     {
+        SoundManager.Instance.StartMainMenu();
         SceneManager.LoadScene("MainMenu");
         SceneLeftInGame.AddRange(SceneName);
         isRunFinnished = false;
