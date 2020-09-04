@@ -54,18 +54,22 @@ public class SoundManager : MonoBehaviour
 
     public void StartWin()
     {
+        /*
         source.volume = 0.1f;
         sourceWL.clip = WinSound;
         sourceWL.Play();
         StartCoroutine(WLSoundCoroutine());
+        */
     }
 
     public void StartLoose()
     {
+        /*
         source.volume = 0.1f;
         sourceWL.clip = LooseSound;
         sourceWL.Play();
         StartCoroutine(WLSoundCoroutine());
+        */
     }
 
     public IEnumerator WLSoundCoroutine()

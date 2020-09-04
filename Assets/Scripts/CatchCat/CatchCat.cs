@@ -23,7 +23,7 @@ public class CatchCat : MonoBehaviour
     public void Move()
     {
         float x = transform.position.x + player.GetAxis("X_Axis") * Time.deltaTime * playerSpeed;
-        x = Mathf.Clamp(x, Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector3(1920, 0, 0)).x);
+        x = Mathf.Clamp(x, Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x);
         transform.position = new Vector3(x, transform.position.y, transform.position.z);
     }
 }
