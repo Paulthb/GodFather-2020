@@ -940,8 +940,8 @@ MonoBehaviour:
   - {fileID: 4463299002723303978, guid: fa410b85beb81b74995704d7dcdf30a4, type: 3}
   - {fileID: 1686816153356196573, guid: acb4cc3ef7c19f54a9cf58639c1df1e9, type: 3}
   - {fileID: 5223266721615478637, guid: 6928ec91ebcf90340baf16c9db18d806, type: 3}
-  catAmount: 10
-  timeBetweenSpawn: 0.5
+  catAmount: 20
+  timeBetweenSpawn: 0.05
   mintimeBetweenSpawn: 0.2
   maxtimeBetweenSpawn: 1
 --- !u!1 &1202802968
