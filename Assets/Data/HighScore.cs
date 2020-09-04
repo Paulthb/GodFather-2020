@@ -7,11 +7,11 @@ public class HighScore : ScriptableObject
 {
     public List<float> finalScoreList = new List<float>();
 
-    public float lastScore = 0;
+    public int lastScore = 0;
 
     public void AddFinalScore(float newScore)
     {
-        lastScore = newScore;
+        lastScore = (int)newScore;
         finalScoreList.Add(newScore);
         Debug.Log("liste non classé : ");
     }
