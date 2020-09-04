@@ -61,7 +61,7 @@ public class cameraMove : MonoBehaviour
 
         if (player.GetButtonDown("ActionButton") && onValideTarget)
         {
-            Debug.Log("shooted ?");
+            //Debug.Log("shooted ?");
             ShootMask();
         }
 
@@ -92,7 +92,7 @@ public class cameraMove : MonoBehaviour
         if (other.gameObject.tag == "NMPerso")
         {
             onValideTarget = true;
-            Debug.Log("target validate");
+            //Debug.Log("target validate");
 
             actualTarget = other.gameObject;
         }
